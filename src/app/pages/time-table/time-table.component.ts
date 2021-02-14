@@ -31,10 +31,15 @@ export class TimeTableComponent implements OnInit {
 
   onDepartmentSelected() {
     this.semesters = this.department.semesters;
+    this.subjects = [];
+    this.selectedSubjects = [];
+    this.timeTableData = [];
   }
 
   onSemesterSelected() {
     this.subjects = this.semester.subjects;
+    this.selectedSubjects = [];
+    this.timeTableData = [];
   }
 
   onSubmit() {
