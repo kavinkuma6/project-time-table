@@ -1,0 +1,81 @@
+<div class="container mt-4">
+  <h1>Time Table</h1>
+  <div class="row mt-4">
+    <div class="col-6">
+      <form>
+        <div class="form-group">
+          <label for="department">Department</label>
+          <select
+            [(ngModel)]="department"
+            (change)="onDepartmentSelected()"
+            name="department"
+            class="form-control"
+            id="department"
+          >
+            <option *ngFor="let d of departments" [ngValue]="d">
+              {{ d.name }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="semester">Semester</label>
+          <select
+            [(ngModel)]="semester"
+            (change)="onSemesterSelected()"
+            name="semester"
+            class="form-control"
+            id="semester"
+          >
+            <option *ngFor="let s of semesters" [ngValue]="s">
+              {{ s.name }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <select
+            [(ngModel)]="selectedSubjects"
+            name="subject"
+            class="form-control"
+            id="subject"
+            multiple
+          >
+            <option *ngFor="let s of subjects" [ngValue]="s">
+              {{ s.name }}
+            </option>
+          </select>
+          <small
+            *ngIf="!!erroMsg"
+            style="color: red !important"
+            id="subjectHelp"
+            class="form-text text-muted"
+            >{{ erroMsg }}</small
+          >
+        </div>
+        <button type="submit" (click)="onSubmit()" class="btn btn-primary">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Day/Period</th>
+          <th scope="col">9:30-10:30</th>
+          <th scope="col">10:30-11:30</th>
+          <th scope="col">11:30-12:30</th>
+          <th scope="col">12:30-13:30</th>
+          <th scope="col">13:30-14:30</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of timeTableData">
+          <th scope="row">{{ data.day | titlecase }}</th>
+          <td *ngFor="let s of data.subjects">{{ s.name }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
